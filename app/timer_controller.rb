@@ -22,6 +22,7 @@ class TimerController < UIViewController
   end
 
   def actionTapped
+    divide_by_zero
     if @timer
       @timer.invalidate
       @timer = nil
@@ -30,6 +31,10 @@ class TimerController < UIViewController
       @timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:'timerFired', userInfo:nil, repeats:true)
     end
     @action.selected = !@action.selected?
+  end
+
+  def divide_by_zero
+    1/0 # crash
   end
 
   def timerFired
